@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class UploadController {
     
-    private static String UPLOADED_PATH = "/home/naufal/uploaded-files/";
+    private static String UPLOADED_PATH = "/Users/mac/Spring/uploaded-files/";
     
     @GetMapping("/")
     public String index() {
@@ -38,7 +37,7 @@ public class UploadController {
         try {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_PATH + file.getOriginalFilename());
-            Files.write(path, bytes, StandardOpenOption.WRITE);
+            Files.write(path, bytes);
 
             redirectAttributes.addFlashAttribute("message", "you successed upload a file");
         } catch (IOException e) {
